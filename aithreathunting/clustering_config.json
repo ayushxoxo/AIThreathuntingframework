@@ -1,0 +1,31 @@
+{
+  "data": {
+    "csv_path": "data/merged_output1.csv",
+    "output_dir": "data/clusters"
+  },
+  "preprocessing": {
+    "null_threshold": 0.5,
+    "correlation_threshold": 0.9,
+    "high_cardinality_threshold": 100
+  },
+  "dimensionality_reduction": {
+    "mode": "pca",
+    "pca_variance": 0.95,
+    "umap_params": {
+      "n_neighbors": 30,
+      "min_dist": 0.1,
+      "n_components": 10
+    }
+  },
+  "clustering": {
+    "min_cluster_size_pct": 0.02,
+    "min_samples": 20,
+    "metric": "euclidean",
+    "cluster_selection_method": "eom",
+    "prediction_data": true
+  },
+  "evaluation": {
+    "has_ground_truth": false,
+    "ground_truth_column": "label"
+  }
+}

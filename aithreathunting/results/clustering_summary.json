@@ -1,0 +1,161 @@
+{
+  "config": {
+    "data": {
+      "csv_path": "data/merged_output1.csv",
+      "output_dir": "data/clusters"
+    },
+    "preprocessing": {
+      "null_threshold": 0.5,
+      "correlation_threshold": 0.9,
+      "high_cardinality_threshold": 100
+    },
+    "dimensionality_reduction": {
+      "mode": "pca",
+      "pca_variance": 0.95,
+      "umap_params": {
+        "n_neighbors": 30,
+        "min_dist": 0.1,
+        "n_components": 10
+      }
+    },
+    "clustering": {
+      "min_cluster_size_pct": 0.02,
+      "min_samples": 20,
+      "metric": "euclidean",
+      "cluster_selection_method": "eom",
+      "prediction_data": true
+    },
+    "evaluation": {
+      "has_ground_truth": false,
+      "ground_truth_column": "label"
+    }
+  },
+  "total_hosts": 17,
+  "results_by_host": {
+    "ip-10-100-1-4": {
+      "n_logs": 485241,
+      "n_clusters": 20,
+      "n_anomalies": 64473,
+      "anomaly_pct": 13.286799755173204,
+      "n_anomaly_candidates": 14
+    },
+    "ip-10-100-1-26": {
+      "n_logs": 378424,
+      "n_clusters": 19,
+      "n_anomalies": 70891,
+      "anomaly_pct": 18.733219880345857,
+      "n_anomaly_candidates": 8
+    },
+    "ip-10-100-1-105": {
+      "n_logs": 409931,
+      "n_clusters": 18,
+      "n_anomalies": 36963,
+      "anomaly_pct": 9.016883329145637,
+      "n_anomaly_candidates": 9
+    },
+    "ip-10-100-1-186": {
+      "n_logs": 713867,
+      "n_clusters": 23,
+      "n_anomalies": 121201,
+      "anomaly_pct": 16.978092557857416,
+      "n_anomaly_candidates": 0
+    },
+    "ip-10-100-1-95": {
+      "n_logs": 479433,
+      "n_clusters": 16,
+      "n_anomalies": 81897,
+      "anomaly_pct": 17.082053175313337,
+      "n_anomaly_candidates": 11
+    },
+    "ubuntu": {
+      "n_logs": 533018,
+      "n_clusters": 17,
+      "n_anomalies": 88492,
+      "anomaly_pct": 16.602065971505652,
+      "n_anomaly_candidates": 14
+    },
+    "ip-10-100-1-217": {
+      "n_logs": 188967,
+      "n_clusters": 27,
+      "n_anomalies": 14494,
+      "anomaly_pct": 7.670122296485629,
+      "n_anomaly_candidates": 0
+    },
+    "ip-10-100-1-120": {
+      "n_logs": 95747,
+      "n_clusters": 24,
+      "n_anomalies": 18811,
+      "anomaly_pct": 19.64656856089486,
+      "n_anomaly_candidates": 19
+    },
+    "ip-10-100-1-173": {
+      "n_logs": 74593,
+      "n_clusters": 21,
+      "n_anomalies": 8728,
+      "anomaly_pct": 11.70082983657984,
+      "n_anomaly_candidates": 9
+    },
+    "ip-10-100-1-28": {
+      "n_logs": 75648,
+      "n_clusters": 22,
+      "n_anomalies": 10169,
+      "anomaly_pct": 13.442523265651438,
+      "n_anomaly_candidates": 13
+    },
+    "ip-10-100-1-34": {
+      "n_logs": 73295,
+      "n_clusters": 21,
+      "n_anomalies": 9300,
+      "anomaly_pct": 12.688450781090117,
+      "n_anomaly_candidates": 10
+    },
+    "ip-10-100-1-55": {
+      "n_logs": 75208,
+      "n_clusters": 22,
+      "n_anomalies": 10668,
+      "anomaly_pct": 14.184661206254653,
+      "n_anomaly_candidates": 12
+    },
+    "ip-10-100-1-57": {
+      "n_logs": 162378,
+      "n_clusters": 23,
+      "n_anomalies": 20551,
+      "anomaly_pct": 12.656271169739744,
+      "n_anomaly_candidates": 16
+    },
+    "ip-10-100-1-79": {
+      "n_logs": 15775,
+      "n_clusters": 23,
+      "n_anomalies": 1956,
+      "anomaly_pct": 12.399366085578446,
+      "n_anomaly_candidates": 9
+    },
+    "ip-10-100-1-129": {
+      "n_logs": 15026,
+      "n_clusters": 20,
+      "n_anomalies": 3347,
+      "anomaly_pct": 22.274723812059097,
+      "n_anomaly_candidates": 6
+    },
+    "ip-10-100-1-165": {
+      "n_logs": 16010,
+      "n_clusters": 24,
+      "n_anomalies": 2365,
+      "anomaly_pct": 14.77201748906933,
+      "n_anomaly_candidates": 0
+    },
+    "ip-10-100-1-169": {
+      "n_logs": 14635,
+      "n_clusters": 21,
+      "n_anomalies": 1795,
+      "anomaly_pct": 12.265117868124358,
+      "n_anomaly_candidates": 9
+    }
+  },
+  "totals": {
+    "total_logs": 3807196,
+    "total_clusters": 361,
+    "total_anomalies": 566101,
+    "avg_anomaly_pct": 14.43528041416874
+  }
+}

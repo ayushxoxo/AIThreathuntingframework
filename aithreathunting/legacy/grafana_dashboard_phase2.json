@@ -1,0 +1,136 @@
+{
+  "dashboard": {
+    "title": "BETH Cybersecurity Analytics - Two-Stage Intelligence",
+    "panels": [
+      {
+        "id": 1,
+        "title": "A. Global Behavior (Green vs Red)",
+        "type": "piechart",
+        "targets": [
+          {
+            "expr": "sum by (cluster_id) (beth_cluster_distribution)",
+            "legendFormat": "Cluster {{cluster_id}}"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 0},
+        "description": "Total logs divided into Normal Clusters (Green) and Anomalies (Red)"
+      },
+      {
+        "id": 2,
+        "title": "B. The Anomaly Heartbeat",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "rate(beth_anomaly_total[1m])",
+            "legendFormat": "Anomaly Spike Rate"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 0},
+        "alert": {
+          "conditions": [
+            {
+              "evaluator": {"params": [10], "type": "gt"},
+              "query": {"params": ["A", "5m", "now"]}
+            }
+          ],
+          "name": "High Anomaly Rate Alert"
+        },
+        "description": "Real-time spike detection - flat line at 0 that spikes vertically on anomalies"
+      },
+      {
+        "id": 3,
+        "title": "C. Threat Severity Gauge",
+        "type": "gauge",
+        "targets": [
+          {
+            "expr": "avg(beth_attack_risk_score)"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 8},
+        "fieldConfig": {
+          "defaults": {
+            "thresholds": {
+              "steps": [
+                {"value": 0, "color": "green"},
+                {"value": 0.5, "color": "yellow"},
+                {"value": 0.8, "color": "red"}
+              ]
+            },
+            "max": 1,
+            "min": 0
+          }
+        },
+        "description": "0-0.4 (Safe), 0.5-0.7 (Warning), 0.8-1.0 (Critical Attack)"
+      },
+      {
+        "id": 4,
+        "title": "D. Anomaly Breakdown (Attack vs System Noise)",
+        "type": "piechart",
+        "targets": [
+          {
+            "expr": "sum by (threat_type) (beth_anomaly_classification_total)",
+            "legendFormat": "{{threat_type}}"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 8},
+        "description": "Stage 2 Classification: What is the Red slice made of?"
+      },
+      {
+        "id": 5,
+        "title": "Total Anomalies Detected",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "beth_anomaly_total"
+          }
+        ],
+        "gridPos": {"h": 4, "w": 6, "x": 0, "y": 16}
+      },
+      {
+        "id": 6,
+        "title": "Attack Count",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "beth_anomaly_classification_total{threat_type=\"attack\"}"
+          }
+        ],
+        "gridPos": {"h": 4, "w": 6, "x": 6, "y": 16},
+        "fieldConfig": {
+          "defaults": {
+            "color": {"mode": "thresholds"},
+            "thresholds": {
+              "steps": [
+                {"value": 0, "color": "green"},
+                {"value": 1, "color": "red"}
+              ]
+            }
+          }
+        }
+      },
+      {
+        "id": 7,
+        "title": "System Noise Count",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "beth_anomaly_classification_total{threat_type=\"system_noise\"}"
+          }
+        ],
+        "gridPos": {"h": 4, "w": 6, "x": 12, "y": 16},
+        "fieldConfig": {
+          "defaults": {
+            "color": {"mode": "thresholds"},
+            "thresholds": {
+              "steps": [
+                {"value": 0, "color": "blue"}
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "refresh": "10s",
+    "time": {"from": "now-1h", "to": "now"}
+  }
+}

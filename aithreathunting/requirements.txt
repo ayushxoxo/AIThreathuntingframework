@@ -1,0 +1,11 @@
+pandas
+numpy
+scikit-learn>=1.0
+hdbscan==0.8.29
+prometheus_client
+xgboost
+
+# Optional: only needed if clustering_config.json sets
+# dimensionality_reduction.mode to "umap" (default mode is "pca",
+# which needs nothing beyond scikit-learn above).
+# umap-learn
